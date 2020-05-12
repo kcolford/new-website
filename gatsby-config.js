@@ -18,8 +18,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-	name: `images`,
-	path: `${__dirname}/src/images`,
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -28,13 +28,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-	gatsbyRemarkPlugins: remarkPlugins,
+        gatsbyRemarkPlugins: remarkPlugins,
       },
     },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-	plugins: remarkPlugins,
+        plugins: remarkPlugins,
       },
     },
     {
