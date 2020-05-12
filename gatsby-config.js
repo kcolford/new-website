@@ -1,8 +1,17 @@
+let remarkPlugins = [
+  `gatsby-remark-copy-linked-files`,
+  {
+    resolve: `gatsby-remark-images`,
+    options: { maxWidth: 800 },
+  },
+]
+
 module.exports = {
   siteMetadata: {
     title: `Kieran Colford`,
     description: `A blog of my thoughts and ideas.`,
     author: `@kcolford`,
+    siteUrl: `https://www.kcolford.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -15,6 +24,26 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-remark-images`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+	gatsbyRemarkPlugins: remarkPlugins,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+	plugins: remarkPlugins,
+      },
+    },
+    `gatsby-plugin-catch-links`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: { trackingId: "UA-45606820-1" },
+    },
+    `gatsby-plugin-robots-txt`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -30,5 +59,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify`,
   ],
 }
