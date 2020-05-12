@@ -38,6 +38,10 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: { id: "GTM-KN3M4BF" },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: { trackingId: "UA-45606820-1" },
     },
