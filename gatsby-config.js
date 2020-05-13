@@ -39,8 +39,26 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: { trackingId: "UA-45606820-1"},
+    },
+    {
       resolve: `gatsby-plugin-google-tagmanager`,
       options: { id: "GTM-KN3M4BF" },
+    },
+    process.env.GOOGLE_SERVICE_ACCOUNT_KEY && {
+      resolve: `gatsby-plugin-guess-js`,
+      options: {
+        GAViewID: `78883169`,
+        jwt: {
+          client_email: `netlify-google-analytics-983@personal-183615.iam.gserviceaccount.com`,
+          private_key: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+        },
+        period: {
+          startDate: new Date('2020-05-03'),
+          endDate: new Date(),
+        },
+      },
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
@@ -65,5 +83,5 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
-  ],
+  ].filter(Boolean),
 }
