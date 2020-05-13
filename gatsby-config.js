@@ -47,7 +47,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
-        // siteUrl: `https://www.kcolford.com`,
+        siteUrl: `https://www.kcolford.com`,
       },
     },
     `gatsby-plugin-robots-txt`,
