@@ -6,16 +6,21 @@ import { useStaticQuery, graphql } from "gatsby"
 
 const Layout = ({ children, _frontmatter }) => {
   let { title, description } = _frontmatter
-  const data = useStaticQuery(graphql`{
-    site {
-      siteMetadata {
-        title
+  const data = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          title
+        }
       }
     }
-  }`)
+  `)
   return (
     <Container maxWidth="md">
-      <SEO title={title || data.site.siteMetadata.title} description={description} />
+      <SEO
+        title={title || data.site.siteMetadata.title}
+        description={description}
+      />
       <main>{children}</main>
     </Container>
   )

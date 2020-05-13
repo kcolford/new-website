@@ -1,3 +1,5 @@
+const path = require("path")
+
 let data = {
   title: `Kieran Colford`,
   author: `Kieran Colford`,
@@ -5,32 +7,37 @@ let data = {
   siteUrl: `https://www.kcolford.com`,
 }
 
-let googleServiceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT || "null")
+let googleServiceAccount = JSON.parse(
+  process.env.GOOGLE_SERVICE_ACCOUNT || "null"
+)
 
 module.exports = {
   siteMetadata: data,
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: "images",
-        path: `${__dirname}/src/images`,
+        name: `images`,
+        path: path.join(__dirname, "src", "images"),
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [".mdx", ".md"],
+        defaultLayouts: {
+          default: require.resolve("./src/components/layout.tsx"),
+          blog: require.resolve("./src/components/layout.tsx"),
+        },
         gatsbyRemarkPlugins: [
-          `gatsby-remark-smartypants`,
           {
             resolve: `gatsby-remark-images`,
-            options: { maxWidth: 800 },
+            options: { maxWidth: 1920 },
           },
+          `gatsby-remark-responsive-iframe`,
+          `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
         ],
       },
     },
@@ -42,7 +49,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
-      options: { trackingId: "UA-45606820-1"},
+      options: { trackingId: "UA-45606820-1" },
     },
     {
       resolve: `gatsby-plugin-google-tagmanager`,
@@ -57,20 +64,23 @@ module.exports = {
           private_key: googleServiceAccount.private_key,
         },
         period: {
-          startDate: new Date('2020-05-03'),
+          startDate: new Date("2020-05-03"),
           endDate: new Date(),
         },
       },
     },
+    `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
         siteUrl: data.siteUrl,
       },
     },
-    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
