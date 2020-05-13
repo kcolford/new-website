@@ -1,0 +1,14 @@
+import Layout from '../components/layout'
+export default Layout
+import { graphql } from 'gatsby'
+
+# My Blog
+
+This page is supposed to dynamically show a listing of all blog entries.
+
+export const query = graphql`{
+    file {
+        id
+    }
+}`
+
