@@ -5,6 +5,8 @@ let data = {
   siteUrl: `https://www.kcolford.com`,
 }
 
+let googleServiceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT || "null")
+
 module.exports = {
   siteMetadata: data,
   plugins: [
@@ -46,13 +48,13 @@ module.exports = {
       resolve: `gatsby-plugin-google-tagmanager`,
       options: { id: "GTM-KN3M4BF" },
     },
-    process.env.GOOGLE_SERVICE_ACCOUNT_KEY && {
+    googleServiceAccount && {
       resolve: `gatsby-plugin-guess-js`,
       options: {
         GAViewID: `78883169`,
         jwt: {
-          client_email: `netlify-google-analytics-983@personal-183615.iam.gserviceaccount.com`,
-          private_key: process.env.GOOGLE_SERVICE_ACCOUNT_KEY,
+          client_email: googleServiceAccount.client_email,
+          private_key: googleServiceAccount.private_key,
         },
         period: {
           startDate: new Date('2020-05-03'),
