@@ -1,21 +1,15 @@
 import * as React from "react"
 import * as PropTypes from "prop-types"
 import SEO from "./seo"
-import { AppBar, Toolbar, Typography, Container } from "@material-ui/core"
-import Backgound from "./background"
-import Center from 'react-center'
+import { Container } from "@material-ui/core"
 
 const Layout = ({ children, _frontmatter }) => {
-  let { title } = _frontmatter
+  let { title, description } = _frontmatter
   return (
-    <Typography>
-        <Center>
-          <Container maxWidth="lg">
-            <SEO title={title} />
-            <main>{children}</main>
-          </Container>
-        </Center>
-   </Typography>
+    <Container maxWidth="md">
+      <SEO title={title} description={description} />
+      <main>{children}</main>
+    </Container>
   )
 }
 
