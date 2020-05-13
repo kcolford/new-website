@@ -1,41 +1,35 @@
-let remarkPlugins = [
-  `gatsby-remark-copy-linked-files`,
-  `gatsby-remark-smartypants`,
-  {
-    resolve: `gatsby-remark-images`,
-    options: { maxWidth: 800 },
-  },
-]
+let data = {
+  title: `Kieran Colford`,
+  author: `Kieran Colford`,
+  description: `A blog of my thoughts and ideas.`,
+  siteUrl: `https://www.kcolford.com`,
+}
 
 module.exports = {
-  siteMetadata: {
-    title: `Kieran Colford`,
-    description: `A blog of my thoughts and ideas.`,
-    author: `@kcolford`,
-    siteUrl: `https://www.kcolford.com`,
-  },
+  siteMetadata: data,
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        name: "images",
+        path: `${__dirname}/src`,
       },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-remark-images`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        gatsbyRemarkPlugins: remarkPlugins,
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: remarkPlugins,
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          `gatsby-remark-smartypants`,
+          {
+            resolve: `gatsby-remark-images`,
+            options: { maxWidth: 800 },
+          },
+          `gatsby-remark-copy-linked-files`,
+        ],
       },
     },
     {
@@ -47,14 +41,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
-        siteUrl: `https://www.kcolford.com`,
+        siteUrl: data.siteUrl,
       },
     },
     `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Kieran Colford`,
+        name: data.title,
         short_name: `kcolford`,
         start_url: `/`,
         background_color: `#000000`,
