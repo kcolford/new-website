@@ -61,6 +61,6 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test:e2e": "start-server-and-test develop http://127.0.0.1:8000 cy:open",
-    "cy:open": "cypress open"
+    "cy:open": "cypress run"
   }
 }
