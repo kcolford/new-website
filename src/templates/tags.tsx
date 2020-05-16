@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import getTitle from '../utils/getTitle';
+import getTitle from "../utils/getTitle"
 
 export default function Tags({ pageContext, data }) {
   const { tag } = pageContext
@@ -16,9 +16,7 @@ export default function Tags({ pageContext, data }) {
           const { slug } = node.fields
           return (
             <li key={node.fields.slug}>
-              <Link to={node.fields.slug}>
-                {getTitle(node)}
-              </Link>
+              <Link to={node.fields.slug}>{getTitle(node)}</Link>
             </li>
           )
         })}

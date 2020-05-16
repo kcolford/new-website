@@ -2,22 +2,37 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { List, ListItem } from "@material-ui/core"
 import getTitle from "../utils/getTitle"
+import { ListGroup, Row, Col, Jumbotron } from "react-bootstrap"
 
 export default function Blog({ data }) {
   const posts = data.posts.nodes
   return (
     <Layout>
       <SEO title="Blog" description="Blog posts" />
-      <List>
-        {posts.map(post => (
-          <ListItem key={post.id}>
-            <Link to={post.fields.slug}>{getTitle(post)}</Link>
-          </ListItem>
-        ))}
-      </List>
-      <Link to="tags/">All Tags</Link>
+      <Jumbotron>
+        <h1>Hello</h1>
+      </Jumbotron>
+      <Row>
+        <ListGroup>
+          {posts.map(post => (
+            <ListGroup.Item key={post.id}>
+              <Col>
+                <Link to={post.fields.slug}>{getTitle(post)}</Link>
+              </Col>
+              <Col>{post.excerpt}</Col>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Row>
+      <Row>
+        <Col>
+          <Link to="/blog/tags/">All Tags</Link>
+        </Col>
+        <Col>
+          <Link to="/rss.xml">My Feed</Link>
+        </Col>
+      </Row>
     </Layout>
   )
 }

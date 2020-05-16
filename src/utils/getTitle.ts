@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 
 export interface NodeTitle {
-  headers: { value: string}[]
+  headers: { value: string }[]
   frontmatter: { title: string }
 }
 
