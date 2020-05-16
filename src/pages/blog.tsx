@@ -27,10 +27,10 @@ export default function Blog({ data }) {
       </Row>
       <Row>
         <Col>
-          <Link to="/blog/tags/">All Tags</Link>
-        </Col>
-        <Col>
-          <Link to="/rss.xml">My Feed</Link>
+          <p>
+            <Link to="/blog/tags/">All Tags</Link>{" "}
+            <Link to="/rss.xml">My Feed</Link>
+          </p>
         </Col>
       </Row>
     </Layout>
