@@ -5,6 +5,10 @@ let data = {
   author: `Kieran Colford`,
   description: `A blog of my thoughts and ideas.`,
   siteUrl: `https://www.kcolford.com`,
+  social: [
+    { name: `Twitter`, url: `https://twitter.com/KieranColford` },
+    { name: `Github`, url: `https://github.com/kcolford` },
+  ],
 }
 
 let googleServiceAccount = JSON.parse(
@@ -14,21 +18,27 @@ let googleServiceAccount = JSON.parse(
 module.exports = {
   siteMetadata: data,
   plugins: [
+    `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: path.join(__dirname, "src", "images"),
+        path: `${__dirname}/content/assets`,
+        name: `assets`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/posts`,
+        name: `posts`,
       },
     },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [".mdx", ".md"],
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout.tsx"),
-          blog: require.resolve("./src/components/layout.tsx"),
-        },
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -70,51 +80,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-feed`,
-      options: {
-        feeds: [
-          {
-            query: `
-              {
-                allSitePage(
-                  filter: { path: { glob: "/blog/*" } }
-                  sort: { order: DESC, fields: [context___frontmatter___date]}
-                ) {
-                  edges {
-                    node {
-                      path
-                      context {
-                        frontmatter {
-                          title
-                          date
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            serialize: ({ query }) => {
-              return query.allSitePage.edges.map(edge => {
-                return {
-                  ...edge.node.context.frontmatter,
-                  url: data.siteUrl + edge.node.path,
-                }
-              })
-            },
-            output: `rss.xml`,
-            title: `${data.title} RSS Feed`,
-          },
-        ],
-      },
-    },
-    `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-catch-links`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
-    {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
         siteUrl: data.siteUrl,
@@ -129,9 +94,15 @@ module.exports = {
         background_color: `#000000`,
         theme_color: `#ffffff`,
         display: `standalone`,
-        icon: `src/images/icon.png`,
+        icon: `content/assets/icon.png`,
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+    },
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
   ].filter(Boolean),
