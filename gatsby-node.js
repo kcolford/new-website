@@ -29,6 +29,10 @@ exports.createPages = async ({ graphql, actions }) => {
           id
           fields {
             slug
+            sourceInstanceName
+          }
+          frontmatter {
+            tags
           }
         }
       }
@@ -39,10 +43,22 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   result.data.allMdx.nodes.forEach(post => {
+    if (post.fields.sourceInstanceName !== `blog`) {
+      return
+    }
+
     createPage({
       path: post.fields.slug,
       component: path.resolve(`./src/templates/blog-post.tsx`),
       context: { id: post.id },
+    })
+
+    post.frontmatter.tags.forEach(tag => {
+      createPage({
+        path: `/blog/tags/${tag}`,
+        component: path.resolve(`./src/templates/tags.tsx`),
+        context: { tag: tag },
+      })
     })
   })
 }

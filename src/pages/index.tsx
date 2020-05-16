@@ -12,7 +12,7 @@ export default () => (
     <Card>
       <List>
         <ListItem>
-          <Link to="/blog/">
+          <Link to="blog/">
             <Button variant="contained">Blog</Button>
           </Link>
         </ListItem>
