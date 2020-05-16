@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { InferProps } from "prop-types"
 import PropTypes from "prop-types"
 import SEO from "./seo"
@@ -21,7 +21,7 @@ export default function BasicPage({
 }
 
 BasicPage.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   description: PropTypes.string,
   children: PropTypes.node,
 }

@@ -10,9 +10,9 @@ export default function Blog({ data }) {
     <Layout>
       <SEO title="Blog" description="Blog posts" />
       <List>
-        {posts.map(node => (
-          <ListItem key={node.id}>
-            <Link to={node.fields.slug}>{node.excerpt}</Link>
+        {posts.map(post => (
+          <ListItem key={post.id}>
+            <Link to={post.fields.slug}>{post.excerpt}</Link>
           </ListItem>
         ))}
       </List>

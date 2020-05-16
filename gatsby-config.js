@@ -24,15 +24,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/assets`,
-        name: `assets`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/posts`,
-        name: `posts`,
+        path: `${__dirname}/blog`,
+        name: `blog`,
       },
     },
     {
@@ -94,11 +87,69 @@ module.exports = {
         background_color: `#000000`,
         theme_color: `#ffffff`,
         display: `standalone`,
-        icon: `content/assets/icon.png`,
+        icon: `blog/icon.png`,
       },
     },
     {
       resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+        { 
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+              site_url: siteUrl
+            }
+          }
+        }
+        `,
+        feeds: [
+          {
+            output: `/rss.xml`,
+            title: `Kieran Colford's RSS Feed`,
+            match: `^/blog/`,
+            query: `
+            {
+              allMdx(
+                sort: { order: DESC, fields: [frontmatter___date]},
+              ) {
+                nodes {
+                  excerpt
+                  fields { slug }
+                  frontmatter {
+                    title
+                    date
+                    description
+                    tags
+                  }
+                  headings(depth: h1) {
+                    value
+                  }
+                }
+              }
+            }
+            `,
+            serialize: ({
+              query: {
+                allMdx: { nodes: posts },
+                site: { siteMetadata },
+              },
+            }) => {
+              return posts.map(post => {
+                return {
+                  title: post.frontmatter.title || post.headings[0].value,
+                  description: post.frontmatter.description || post.excerpt,
+                  url: siteMetadata.siteUrl + post.fields.slug,
+                  date: post.frontmatter.date,
+                  categories: post.frontmatter.tags,
+                }
+              })
+            },
+          },
+        ],
+      },
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
