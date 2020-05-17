@@ -2,7 +2,7 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+  const { createNodeField, createRedirect } = actions
 
   if (node.internal.type === "Mdx") {
     const { sourceInstanceName } = getNode(node.parent)

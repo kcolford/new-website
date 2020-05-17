@@ -1,6 +1,6 @@
 const path = require("path")
 
-let data = {
+let siteMetadata = {
   title: `Kieran Colford`,
   author: `Kieran Colford`,
   description: `A blog of my thoughts and ideas.`,
@@ -16,15 +16,23 @@ let googleServiceAccount = JSON.parse(
 )
 
 module.exports = {
-  siteMetadata: data,
+  siteMetadata,
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/blog`,
+        path: path.join(__dirname, `src`, `images`),
+        name: `images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: path.join(__dirname, `blog`),
         name: `blog`,
       },
     },
@@ -55,7 +63,7 @@ module.exports = {
     googleServiceAccount && {
       resolve: `gatsby-plugin-guess-js`,
       options: {
-        GAViewID: `78883169`,
+        GAViewID: process.env.GA_VIEW_ID || `78883169`,
         jwt: {
           client_email: googleServiceAccount.client_email,
           private_key: googleServiceAccount.private_key,
@@ -69,19 +77,19 @@ module.exports = {
     {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
-        siteUrl: data.siteUrl,
+        siteUrl: siteMetadata.siteUrl,
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: data.title,
+        name: siteMetadata.title,
         short_name: `kcolford`,
         start_url: `/`,
         background_color: `#000000`,
         theme_color: `#ffffff`,
         display: `standalone`,
-        icon: `blog/icon.png`,
+        icon: `src/images/icon.png`,
       },
     },
     {
@@ -151,6 +159,7 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-meta-redirect`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
