@@ -121,6 +121,9 @@ module.exports = {
                   headings(depth: h1) {
                     value
                   }
+                  internal {
+                    contentDigest
+                  }
                 }
               }
             }
@@ -138,6 +141,7 @@ module.exports = {
                   url: siteMetadata.siteUrl + post.fields.slug,
                   date: post.frontmatter.date,
                   categories: post.frontmatter.tags,
+                  guid: post.internal.contentDigest,
                 }
               })
             },

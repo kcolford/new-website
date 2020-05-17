@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import { Link } from "gatsby"
-import "bootstrap/dist/css/bootstrap.min.css"
 
 const Layout = ({ children }) => {
   return (
