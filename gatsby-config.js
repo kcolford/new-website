@@ -146,6 +146,7 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-nprogress`,
     `gatsby-plugin-react-helmet-canonical-urls-easy`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
