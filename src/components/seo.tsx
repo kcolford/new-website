@@ -23,7 +23,9 @@ function SEO({ title, description = "", lang = "en", keywords = [] }) {
     <Helmet titleTemplate={`%s | ${site.siteMetadata.title}`}>
       <html lang={lang} />
       <title>{title}</title>
+      <meta name="author" content={site.siteMetadata.author} />
       <meta name="description" content={metaDescription} />
+      <meta name="keywords" content={keywords.toString()} />
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary" />
@@ -37,12 +39,14 @@ function SEO({ title, description = "", lang = "en", keywords = [] }) {
 SEO.defaultProps = {
   lang: `en`,
   description: ``,
+  keywords: [],
 }
 
 SEO.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   lang: PropTypes.string,
+  keyworkds: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default SEO

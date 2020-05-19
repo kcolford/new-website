@@ -15,7 +15,6 @@
     "gatsby-plugin-guess-js": "^1.3.2",
     "gatsby-plugin-manifest": "^2.4.2",
     "gatsby-plugin-mdx": "^1.2.6",
-    "gatsby-plugin-meta-redirect": "^1.1.1",
     "gatsby-plugin-netlify": "^2.3.2",
     "gatsby-plugin-offline": "^3.2.1",
     "gatsby-plugin-react-helmet": "^3.3.1",
@@ -56,6 +55,9 @@
     "prettier": "2.0.5",
     "start-server-and-test": "^1.11.0"
   },
+  "workspaces": [
+    "plugins/*"
+  ],
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",

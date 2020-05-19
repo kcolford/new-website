@@ -11,7 +11,11 @@ export default function BlogPost({ data }) {
   return (
     <MDXProvider>
       <Layout>
-        <SEO title={getTitle(edge.node)} description={edge.node.excerpt} />
+        <SEO
+          title={getTitle(edge.node)}
+          description={edge.node.excerpt}
+          keywords={edge.node.frontmatter.tags}
+        />
         <MDXRenderer>{edge.node.body}</MDXRenderer>
         <br />
         {edge.previous && (
@@ -35,6 +39,9 @@ export const pageQuery = graphql`
         node {
           excerpt
           body
+          frontmatter {
+            tags
+          }
           ...GetTitle
         }
         previous {

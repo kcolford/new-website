@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 import getTitle from "../utils/getTitle"
 import { ListGroup, Row, Col, Jumbotron } from "react-bootstrap"
 
-export default function Blog({ data }) {
+const Blog = ({ data }) => {
   const posts = data.posts.nodes
   return (
     <Layout>
@@ -36,6 +36,8 @@ export default function Blog({ data }) {
     </Layout>
   )
 }
+
+export default Blog
 
 export const pageQuery = graphql`
   {

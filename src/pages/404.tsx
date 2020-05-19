@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import BasicPage from "../components/basic"
 
-export default () => (
+const Error404 = () => (
   <BasicPage
     title="404 Page Not Found"
     description="Couldn't find the page you were looking for. Try Again."
@@ -10,3 +10,5 @@ export default () => (
     <Link to="/">Home</Link>
   </BasicPage>
 )
+
+export default Error404

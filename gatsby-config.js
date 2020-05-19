@@ -1,19 +1,15 @@
 const path = require("path")
 
-let siteMetadata = {
+const googleServiceAccount = JSON.parse(
+  process.env.GOOGLE_SERVICE_ACCOUNT || "null"
+)
+
+const siteMetadata = {
   title: `Kieran Colford`,
   author: `Kieran Colford`,
   description: `A blog of my thoughts and ideas.`,
   siteUrl: `https://www.kcolford.com`,
-  social: [
-    { name: `Twitter`, url: `https://twitter.com/KieranColford` },
-    { name: `Github`, url: `https://github.com/kcolford` },
-  ],
 }
-
-let googleServiceAccount = JSON.parse(
-  process.env.GOOGLE_SERVICE_ACCOUNT || "null"
-)
 
 module.exports = {
   siteMetadata,
@@ -75,12 +71,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
-      options: {
-        siteUrl: siteMetadata.siteUrl,
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: siteMetadata.title,
@@ -111,7 +101,6 @@ module.exports = {
           {
             output: `/rss.xml`,
             title: `Kieran Colford's RSS Feed`,
-            match: `^/blog/`,
             query: `
             {
               allMdx(
@@ -157,9 +146,9 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-react-helmet-canonical-urls-easy`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-meta-redirect`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,

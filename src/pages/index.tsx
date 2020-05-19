@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Link } from "gatsby"
 
-export default () => (
+const MainPage = () => (
   <Layout>
     <SEO title="Home Page" />
     <h1>Hello People!</h1>
@@ -15,3 +15,5 @@ export default () => (
     </ul>
   </Layout>
 )
+
+export default MainPage
