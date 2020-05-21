@@ -19,6 +19,7 @@
     "gatsby-plugin-nprogress": "^2.3.1",
     "gatsby-plugin-offline": "^3.2.1",
     "gatsby-plugin-react-helmet": "^3.3.1",
+    "gatsby-plugin-react-helmet-canonical-urls-easy": "^1.0.0",
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sass": "^2.3.1",
     "gatsby-plugin-sharp": "^2.6.2",
@@ -55,9 +56,6 @@
     "prettier": "2.0.5",
     "start-server-and-test": "^1.11.0"
   },
-  "workspaces": [
-    "plugins/*"
-  ],
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
