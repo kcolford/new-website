@@ -12,14 +12,14 @@ const Layout = ({ children }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav variant="tabs" defaultActiveKey="/">
+          <Nav variant="tabs" defaultActiveKey="">
             <Nav.Item>
-              <Nav.Link as={Link} to="/">
+              <Nav.Link as={Link} to="">
                 Home
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link as={Link} to="/blog/">
+              <Nav.Link as={Link} to="blog">
                 Blog
               </Nav.Link>
             </Nav.Item>

@@ -3,22 +3,20 @@ import { graphql, Link } from "gatsby"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
-export default function Tags({ data }) {
-  return (
-    <Layout>
-      <SEO title="Blog Tags" description="Listing of blog tags" />
-      <ul>
-        {data.tags.group.map(group => (
-          <li>
-            <Link to={`/blog/tags/${group.fieldValue}`}>
-              {group.fieldValue}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </Layout>
-  )
-}
+export const Tags = ({ data }) => (
+  <Layout>
+    <SEO title="Blog Tags" description="Listing of blog tags" />
+    <ul>
+      {data.tags.group.map(group => (
+        <li>
+          <Link to={`blog/tags/${group.fieldValue}`}>{group.fieldValue}</Link>
+        </li>
+      ))}
+    </ul>
+  </Layout>
+)
+
+export default Tags
 
 export const pageQuery = graphql`
   {

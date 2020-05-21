@@ -5,9 +5,10 @@ export interface NodeTitle {
   frontmatter: { title: string }
 }
 
-export default function getTitle(node: NodeTitle) {
-  return node.frontmatter.title || node.headers[0].value
-}
+export const getTitle = (node: NodeTitle) =>
+  node.frontmatter.title || node.headers[0].value
+
+export default getTitle
 
 export const query = graphql`
   fragment GetTitle on Mdx {

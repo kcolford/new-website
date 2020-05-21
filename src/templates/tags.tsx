@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import getTitle from "../utils/getTitle"
 
-export default function Tags({ pageContext, data }) {
+export const Tags = ({ pageContext, data }) => {
   const { tag } = pageContext
   const { edges, totalCount } = data.allMdx
   return (
@@ -24,6 +24,8 @@ export default function Tags({ pageContext, data }) {
     </Layout>
   )
 }
+
+export default Tags
 
 export const pageQuery = graphql`
   query($tag: String) {

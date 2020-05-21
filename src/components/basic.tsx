@@ -4,24 +4,24 @@ import PropTypes from "prop-types"
 import SEO from "./seo"
 import Layout from "./layout"
 
-export default function BasicPage({
+export const BasicPage = ({
   title,
   description,
   children,
-}: InferProps<typeof BasicPage.propTypes>) {
-  return (
-    <Layout>
-      <SEO title={title} description={description} />
-      <h1>{title}</h1>
-      {description}
+}: InferProps<typeof BasicPage.propTypes>) => (
+  <Layout>
+    <SEO title={title} description={description} />
+    <h1>{title}</h1>
+    {description}
 
-      {children}
-    </Layout>
-  )
-}
+    {children}
+  </Layout>
+)
 
 BasicPage.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   children: PropTypes.node,
 }
+
+export default BasicPage

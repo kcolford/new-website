@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 import Layout from "../components/layout"
 import getTitle from "../utils/getTitle"
 
-export default function BlogPost({ data }) {
+export const BlogPost = ({ data }) => {
   const edge = data.allMdx.edges[0]
   return (
     <MDXProvider>
@@ -28,6 +28,8 @@ export default function BlogPost({ data }) {
     </MDXProvider>
   )
 }
+
+export default BlogPost
 
 export const pageQuery = graphql`
   query BlogPost($id: String) {

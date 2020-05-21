@@ -57,6 +57,7 @@
     "start-server-and-test": "^1.11.0"
   },
   "scripts": {
+    "start": "npm run develop",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md,tsx,ts,mdx}\"",

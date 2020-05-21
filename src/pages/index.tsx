@@ -10,7 +10,7 @@ const MainPage = () => (
     Welcome to my humble abode.
     <ul>
       <li>
-        <Link to="/blog/">Blog</Link>
+        <Link to="blog">Blog</Link>
       </li>
     </ul>
   </Layout>
