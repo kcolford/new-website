@@ -6664,6 +6664,13 @@ gatsby-plugin-page-creator@^2.3.1:
     lodash "^4.17.15"
     micromatch "^3.1.10"
 
+gatsby-plugin-react-helmet-canonical-urls-easy@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet-canonical-urls-easy/-/gatsby-plugin-react-helmet-canonical-urls-easy-1.0.2.tgz#db208d9029aca4653c668566d6a2b09ee8717a80"
+  integrity sha512-euy4AqogvFB5WqQj5hIFZHyPFG6jimVIfYV77wMTtwIHuM00LPQoTwDKvmFIghDC3VSs8lpbCitOXqBei9qORg==
+  dependencies:
+    prop-types "^15.0.0"
+
 gatsby-plugin-react-helmet@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.3.1.tgz#e1600bdcf575250707281a85024d10b1ee64048a"
