@@ -30,14 +30,14 @@ module.exports = async ({ graphql, actions }) => {
 
     createPage({
       path: post.fields.slug,
-      component: path.resolve(`./src/templates/blog-post.tsx`),
+      component: path.resolve(`${__dirname}/../templates/blog-post.tsx`),
       context: { id: post.id },
     })
 
     post.frontmatter.tags.forEach(tag => {
       createPage({
         path: `/blog/tags/${tag}`,
-        component: path.resolve(`./src/templates/tags.tsx`),
+        component: path.resolve(`${__dirname}/../templates/tags.tsx`),
         context: { tag: tag },
       })
     })
