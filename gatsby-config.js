@@ -86,7 +86,7 @@ module.exports = {
       resolve: `gatsby-plugin-feed`,
       options: {
         query: `
-        { 
+        {
           site {
             siteMetadata {
               title
@@ -130,18 +130,15 @@ module.exports = {
                 allMdx: { nodes: posts },
                 site: { siteMetadata },
               },
-            }) => {
-              return posts.map(post => {
-                return {
-                  title: post.frontmatter.title || post.headings[0].value,
-                  description: post.frontmatter.description || post.excerpt,
-                  url: siteMetadata.siteUrl + post.fields.slug,
-                  date: post.frontmatter.date,
-                  categories: post.frontmatter.tags,
-                  guid: post.internal.contentDigest,
-                }
-              })
-            },
+            }) =>
+              posts.map(post => ({
+                title: post.frontmatter.title || post.headings[0].value,
+                description: post.frontmatter.description || post.excerpt,
+                url: siteMetadata.siteUrl + post.fields.slug,
+                date: post.frontmatter.date,
+                categories: post.frontmatter.tags,
+                guid: post.internal.contentDigest,
+              })),
           },
         ],
       },
