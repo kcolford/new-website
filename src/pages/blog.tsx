@@ -28,8 +28,7 @@ const Blog = ({ data }) => {
       <Row>
         <Col>
           <p>
-            <Link to="blog/tags">All Tags</Link>{" "}
-            <Link to="rss.xml">My Feed</Link>
+            <Link to="blog/tags">All Tags</Link>
           </p>
         </Col>
       </Row>
